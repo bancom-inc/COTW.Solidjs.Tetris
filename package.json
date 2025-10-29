@@ -1,0 +1,20 @@
+{
+  "name": "solidjs-tetris",
+  "version": "1.0.0",
+  "description": "Tetris game built with Solid.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "vite build && gh-pages -d dist"
+  },
+  "dependencies": {
+    "solid-js": "^1.8.11"
+  },
+  "devDependencies": {
+    "vite": "^5.0.11",
+    "vite-plugin-solid": "^2.9.1",
+    "gh-pages": "^6.1.1"
+  }
+}
