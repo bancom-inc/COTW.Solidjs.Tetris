@@ -4,7 +4,15 @@
 
 ## 自動デプロイ設定（推奨）
 
-`.github/workflows/deploy.yml` ファイルがすでに設定されています。mainブランチにプッシュすると自動的にビルドとデプロイが実行されます。
+GitHub Actions ワークフローファイルの内容は `github-actions-workflow.yml` に保存されています。
+
+GitHub UIから手動でワークフローファイルを作成する必要があります：
+1. リポジトリの **Actions** タブ → **Set up a workflow yourself** をクリック
+2. ファイル名を `.github/workflows/deploy.yml` に設定
+3. `github-actions-workflow.yml` の内容をコピー＆ペースト
+4. mainブランチにコミット
+
+設定後、mainブランチにプッシュすると自動的にビルドとデプロイが実行されます。
 
 ## GitHub Pages 有効化
 
