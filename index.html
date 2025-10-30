@@ -9,11 +9,25 @@
         margin: 0;
         padding: 0;
         font-family: 'Arial', sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(-45deg, #ff0844, #ff4f7a, #1e90ff, #00bfff);
+        background-size: 400% 400%;
+        animation: gradientAnimation 15s ease infinite;
         min-height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+
+      @keyframes gradientAnimation {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
       }
     </style>
   </head>
