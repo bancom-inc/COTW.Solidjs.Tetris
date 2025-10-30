@@ -16,6 +16,7 @@ import './App.css';
 
 function App() {
   const [gameState, setGameState] = createSignal<GameState>(createInitialGameState());
+  const [lineClearEffect, setLineClearEffect] = createSignal<{ count: number; timestamp: number } | null>(null);
   let gameLoopInterval: number | undefined;
 
   // ピースを下に移動
@@ -48,6 +49,12 @@ function App() {
     const newLines = state.lines + linesCleared;
     const newLevel = calculateLevel(newLines);
     const newScore = state.score + calculateScore(linesCleared, state.level);
+
+    // ライン消去エフェクトをトリガー
+    if (linesCleared > 0) {
+      setLineClearEffect({ count: linesCleared, timestamp: Date.now() });
+      setTimeout(() => setLineClearEffect(null), 1500);
+    }
 
     // 次のピース
     const nextPiece = state.nextPiece || getRandomTetromino();
@@ -188,6 +195,22 @@ function App() {
     startGameLoop();
   };
 
+  // ライン消去メッセージを取得
+  const getLineClearMessage = (count: number) => {
+    switch (count) {
+      case 1:
+        return 'SINGLE!';
+      case 2:
+        return 'DOUBLE!!';
+      case 3:
+        return 'TRIPLE!!!';
+      case 4:
+        return 'TETRIS!!!!';
+      default:
+        return '';
+    }
+  };
+
   // ボードを描画用に結合
   const getDisplayBoard = () => {
     const state = gameState();
@@ -292,6 +315,16 @@ function App() {
                 <p>Pキーで再開</p>
               </div>
             </div>
+          </Show>
+
+          <Show when={lineClearEffect()}>
+            {(effect) => (
+              <div class={`line-clear-overlay effect-${effect().count}`}>
+                <div class="line-clear-message">
+                  {getLineClearMessage(effect().count)}
+                </div>
+              </div>
+            )}
           </Show>
         </div>
 
